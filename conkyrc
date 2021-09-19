@@ -1,0 +1,94 @@
+conky.config = {
+	background = true,
+	short_units = true,
+	cpu_avg_samples = 1,
+	net_avg_samples = 1,
+	out_to_console = false,
+	font = '8x10',
+	use_xft = true,
+	font = 'DejaVu Sans:bold:size=10',
+	own_window = true,
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar',
+	own_window_type = 'custom',
+	xftalpha = 1.0,
+	mail_spool = '$MAIL',
+	update_interval = 1,
+	double_buffer = true,
+	minimum_width = 5, minimum_height = 5,
+	maximum_width = 240,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	stippled_borders = 0,
+	border_width = 2,
+	default_color = 'white',
+	default_shade_color = 'white',
+	default_outline_color = 'white',
+	color2 = '#ffffff',
+	color3 = '#ffffff',
+	color4 = 'yellow',
+	color5 = '#45FF37',
+	color8 = '#77ccff',
+	color9 = '#5599cc',
+	color6 = '#FF0202',
+	alignment = 'top_right',
+	gap_x = 50,
+	gap_y = 40,
+	use_spacer = 'right',
+	no_buffers = true,
+	if_up_strictness = 'address',
+	uppercase = false,
+
+
+};
+
+conky.text = [[
+${color3}${alignc}BUBU . LINUX
+${color8}$alignc${font DejaVu Sans:size=17}${time %H:%M}   $font
+${color}${alignc}${time %a %d %b}
+${color}${alignc}Uptime: $uptime
+${color5}CPU:${alignr}${color5}${cpu}${color}%
+${color4}Freq:${color4}${alignr}${freq}
+${color}$alignr${cpugraph cpu0 50,220 FFB400 18FF00}
+${color}Disk:${alignr}${color3}${diskio}
+${color}${alignr}${diskiograph 50,220 5599cc 5599cc}${if_up eth0}
+${color}eth0 up: $alignr${color3} ${upspeed eth0}
+${color}$alignr${upspeedgraph   eth0 50,220 5599cc FFD402}
+${color}eth0 down: $alignr${color3} ${downspeed eth0}
+${color2}$alignr${downspeedgraph eth0 50,220  5599cc FFD402}${endif}${if_up eth1}
+${color}eth1 up: $alignr${color3} ${upspeed eth1}
+${color}$alignr${upspeedgraph   eth1 50,220 5599cc FFD402}
+${color}eth1 down: $alignr${color3} ${downspeed eth1}
+${color2}$alignr${downspeedgraph eth1 50,220  5599cc FFD402}${endif}${if_up wlan0}
+${color}wlan0 up: $alignr${color3} ${upspeed wlan0}
+${color2}$alignr${upspeedgraph   wlan0 50,220 5599cc 5599cc}
+${color}wlan0 down: $alignr${color3} ${downspeed wlan0}
+${color2}$alignr${downspeedgraph wlan0 50,220 5599cc 5599cc}${endif}${if_up wlan1}
+${color}wlan1 up: $alignr${color3} ${upspeed wlan1}
+${color2}$alignr${upspeedgraph   wlan1 50,220 5599cc 5599cc}
+${color}wlan1 down: $alignr${color3} ${downspeed wlan1}
+${color2}$alignr${downspeedgraph wlan1 50,220 5599cc 5599cc}${endif}
+${color5}IP:${alignc}${color} ${addr eth0}
+${color5}D: ${totaldown eth0} ${alignc}U: ${totalup eth0}
+${color}${alignc}${color8}Used / Total
+${color6}RAM:${alignr}$mem ${color3} /${color} $memmax
+${color5}Swap:${alignr}$swap ${color3} /${color} $swapmax
+${color5}root:${alignr}${fs_used /} ${color3} /${color} ${fs_size /}
+${color5}home:${alignr}${fs_used /home} ${color3} /${color} ${fs_size /home}
+
+${color}${alignc}${color8}RAM USAGE ->
+${color}$alignr${memgraph 70,220 00FF00 FF0000 -t}
+${color5}RAM: $alignr${color3}${memperc} %
+${color5}BUFOR: $alignr${color3}${buffers}
+${color5}CACHE: $alignr${color3}${cached}
+${color5}${membar 30,220}
+${color5}GATE: $alignr${color3}${nameserver 0}
+${color5}PRC: $alignr${color3}${processes}
+#${exec amixer -c 0 get Master | grep Mono:}
+
+
+
+
+
+]];
