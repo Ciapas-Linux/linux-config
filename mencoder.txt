@@ -1,0 +1,15 @@
+
+rotate film: mencoder -ovc lavc -vf rotate=1 -oac copy tanytany.avi -o output.avi
+
+mencoder wmv to avi :  mencoder infile.wmv -ofps 23.976 -ovc lavc -oac copy -o outfile.avi 
+
+jpg to mp4: animacja z jpg: mencoder mf://*jpg -mf type=jpeg:fps=25 -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=1000:vhq:vpass=1 -o pulpit.avi -vf scale=512:384
+
+mencoder mf://*jpg -mf type=jpeg:fps=25 -ovc lavc -lavcopts 
+vcodec=mpeg4:vbitrate=1000:vhq:vpass=2 -o pulpit.avi -vf scale=512:384
+
+mencoder tv:// -tv 
+driver=v4l:width=320:height=240:device=/dev/video0:forceaudio:adevice=/dev/dsp1 -ovc lavc 
+-oac mp3lame -lameopts cbr:br=64:mode=3 -o webcam.avi
+
+
