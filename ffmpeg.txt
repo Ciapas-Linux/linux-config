@@ -1,2 +1,83 @@
 
+Some of this snippets i simply find somewhere inside internet:
+
+
+
+mp4 to mpg:
 ffmpeg -i input.mp4 -c:v mpeg1video -c:a mp2 -format mpeg output.mpg
+
+linux alsa record audio:
+ffmpeg -f alsa -i hw:1,1 -c:a flac output.flac
+ffmpeg -f alsa -i hw:1,1 -c:a mp3 output.mp3
+
+convert wav to mp3:
+ffmpeg -i overbutton.wav -vn -ar 44100 -ac 2 -b:a 192k overbutton.mp3
+
+mp4 to webm:
+ffmpeg -i input-file.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis output-file.webm
+
+
+batch convert:
+#!/bin/bash
+VIDEOS=~/Desktop/video-folder/
+find "$VIDEOS" -name '*.mp4' -exec sh -c 'ffmpeg -i "$0" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis "${0%%.mp4}.webm"' {} \;
+exit;
+
+wmv to swf:
+ffmpeg -i tuktuk.wmv -acodec mp3 -ar 22050 -ab 32 -f swf -y from_wmv.swf
+
+configure ffmpeg options when building:
+ffmpeg: ./configure --enable-nonfree --enable-zlib --enable-libxvid --enable-libx264 
+--enable-libvorbis --enable-libtheora --enable-libspeex --enable-libschroedinger 
+--enable-libopenjpeg --enable-libnut --enable-libmp3lame --enable-libfaad --enable-libfaac 
+--enable-libdirac --enable-libamr-wb --enable-libamr-nb --enable-bzlib --enable-gpl
+
+anim:
+ffmpeg -r 12 -i nuxified%05d.jpg -y -an nuxified.avi animate *_frame.png
+
+ffmpeg -r 10 -b 1800 -i $IMAGEPATH/%06d.jpg $VIDEOFILE
+
+Turn X images to a video sequence:
+ffmpeg -f image2 -i image%d.jpg video.mpg
+
+Turn a video to X images:
+ffmpeg -i video.mpg image%d.jpg
+
+Encode a video sequence for the iPpod/iPhone:
+ffmpeg -i source_video.avi input -acodec aac -ab 128kb -vcodec mpeg4 -b 1200kb -mbd 2 -flags +4mv+trell -aic 2 -cmp 2 -subcmp 2 -s 320x180 -title X final_video.mp4
+
+Extracting sound from a video, and save it as Mp3:
+ffmpeg -i source_video.avi -vn -ar 44100 -ac 2 -ab 192 -f mp3 sound.mp3 
+
+Convert .mpg to .avi:
+ffmpeg -i video_origine.mpg video_finale.avi
+
+Convert .avi to animated gif(uncompressed):
+ffmpeg -i video_origine.avi gif_anime.gif
+
+Mix a video with a sound file:
+ffmpeg -i son.wav -i video_origine.avi video_finale.mpg
+
+Convert .avi to .flv:
+ffmpeg -i video_origine.avi -ab 56 -ar 44100 -b 200 -r 15 -s 320x240 -f flv video_finale.flv
+
+convert mp4 to avi:
+ffmpeg -i kus.mp4 -vcodec msmpeg4v2 video_finale.avi 
+
+Compress .avi to divx:
+ffmpeg -i video_origine.avi -s 320x240 -vcodec msmpeg4v2 video_finale.avi 
+
+Compress Ogg Theora to Mpeg dvd:
+ffmpeg -i film_sortie_cinelerra.ogm -s 720x576 -vcodec mpeg2video -acodec mp3 film_terminée.mpg
+
+Compress .avi to SVCD mpeg2 NTSC format:
+ffmpeg -i video_origine.avi -target ntsc-svcd video_finale.mpg PAL format: ffmpeg -i video_origine.avi -target pal-svcd video_finale.mpg
+
+Compress .avi to VCD mpeg2 NTSC format: 
+ffmpeg -i video_origine.avi -target ntsc-vcd video_finale.mpg
+
+PAL format: ffmpeg -i video_origine.avi -target pal-vcd video_finale.mpg
+
+Multi-pass encoding with ffmpeg: ffmpeg -i fichierentree -pass 2 -passlogfile ffmpeg2pass fichiersortie-2
+
+
