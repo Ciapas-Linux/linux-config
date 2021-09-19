@@ -1,0 +1,2 @@
+
+ffmpeg -i input.mp4 -c:v mpeg1video -c:a mp2 -format mpeg output.mpg
