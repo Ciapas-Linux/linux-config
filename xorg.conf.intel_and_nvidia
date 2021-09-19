@@ -1,0 +1,17 @@
+Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0"
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+EndSection
+
+Section "Device"
+    Identifier     "Device0"
+    Driver         "intel"
+    VendorName     "Intel Corporation"
+    BusID          "PCI:0:2:0
+EndSection
+
